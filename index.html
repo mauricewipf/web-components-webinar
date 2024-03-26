@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Elevating Web Development</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,8 +16,417 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+				<section>
+					<p>Webinar</p>
+					<h1>Elevating <br>Web Development</h1>
+					<h2>Crafting Dynamic UIs with <br>Lit Elements and TypeScript</h2>
+					<p>by Maurice Wipf</p>
+				</section>
+
+				<section>
+					<h1>Agenda</h1>
+					<ol>
+						<li>Introduction to Web Components</li>
+						<li>Building Web Components with Lit Elements</li>
+						<li>TailwindCSS</li>
+						<li>Storybook</li>
+						<li>Sharing and distributing Web Components</li>
+						<li>Q&A</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1>About me</h1>
+					<p>Maurice Wipf</p>
+					<ul>
+						<li>Freelance Software Developer and IT Consultant</li>
+						<li>10+ years of experience with web development</li>
+						<li>Based in Budapest, originally from Germany</li>
+						<li>LinkedIn: <a href="https://www.linkedin.com/in/mauricewipf/">Maurice Wipf</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>1 Introduction to Web Components</h1>
+				</section>
+
+				<section>
+					<h2>What are Web Components?</h2>
+					<q>Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.</q>
+					<p>(Source: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">https://developer.mozilla.org/en-US/docs/Web/API/Web_components</a>)</p>
+				</section>
+
+				<section>
+					<pre><code class="language-html" data-trim>
+						<button>HTML Button</button>
+
+						<mauwi-button>Mauwi Button</mauwi-button>
+					</code></pre>
+
+					<button>HTML Button</button>
+				</section>
+
+				<section>
+					<h2>Web Component Standards</h2>
+					<ul>
+						<li>Custom Elements</li>
+						<li>HTML Templates & Slots</li>
+						<li>Shadow DOM</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Custom Elements</h2>
+					<div class="r-stack">
+						<div class="fragment fade-in-then-out">
+							<pre><code class="language-html" data-trim>
+								<mauwi-button></mauwi-button>
+								<script>
+									class MauwiButton extends HTMLElement {
+										constructor() {
+											super();
+											const root = this.attachShadow({ mode: 'closed' });
+											root.innerHTML = `
+												<button>Mauwi Button</button>
+											`;
+										}
+									}
+									customElements.define('mauwi-button', MauwiButton);
+								</script>
+							</code></pre>
+							<mauwi-button></mauwi-button>
+							<p style="opacity: 0">Can you guess which text "Custom Button" or "Mauwi Button" is displayed?</p>
+						</div>
+
+						<div class="fragment fade-in-then-out">
+							<pre><code class="language-html" data-trim>
+								<mauwi-button>Custom Button</mauwi-button>
+								<script>
+									class MauwiButton extends HTMLElement {
+										constructor() {
+											super();
+											const root = this.attachShadow({ mode: 'closed' });
+											root.innerHTML = `
+												<button>Mauwi Button</button>
+											`;
+										}
+									}
+									customElements.define('mauwi-button', MauwiButton);
+								</script>
+							</code></pre>
+							<mauwi-button style="opacity: 0">Custom Button</mauwi-button>
+							<p>Can you guess which text "Custom Button" or "Mauwi Button" is displayed?</p>
+						</div>
+
+						<div class="fragment fade-in-then-out">
+							<pre><code class="language-html" data-trim>
+								<mauwi-button>Custom Button</mauwi-button>
+								<script>
+									class MauwiButton extends HTMLElement {
+										constructor() {
+											super();
+											const root = this.attachShadow({ mode: 'closed' });
+											root.innerHTML = `
+												<button>Mauwi Button</button>
+											`;
+										}
+									}
+									customElements.define('mauwi-button', MauwiButton);
+								</script>
+							</code></pre>
+							<mauwi-button>Custom Button</mauwi-button>
+							<p style="opacity: 0">Can you guess which text "Custom Button" or "Mauwi Button" is displayed?</p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>HTML Templates & Slots</h2>
+					<pre><code class="language-html" data-trim>
+						<mauwi-button-v2>Mauwi Button</mauwi-button-v2>
+						<script>
+							class Mauwi2Button extends HTMLElement {
+								constructor() {
+									super();
+									const root = this.attachShadow({ mode: 'closed' });
+									root.innerHTML = `
+										<button>
+											<slot></slot>
+										</button>
+									`;
+								}
+							}
+							customElements.define('mauwi-button-v2', Mauwi2Button);
+						</script>
+					</code></pre>
+
+					<mauwi-button-v2>Mauwi Button</mauwi-button-v2>
+				</section>
+
+				<section>
+					<p>What if no text is provided in the custom tag?</p>
+					<pre><code class="language-html" data-trim>
+						<mauwi-button></mauwi-button>
+					</code></pre>
+
+					<mauwi-button-v2></mauwi-button-v2>
+				</section>
+
+				<section>
+					<p>What if no text is provided in the custom tag?</p>
+					<pre><code class="language-html" data-trim>
+						<mauwi-button-v3></mauwi-button-v3>
+						<script>
+							class Mauwi3Button extends HTMLElement {
+								constructor() {
+									super();
+									const root = this.attachShadow({ mode: 'closed' });
+									root.innerHTML = `
+										<button>
+											<slot>Default Value</slot>
+										</button>
+									`;
+								}
+							}
+							customElements.define('mauwi-button-v3', Mauwi3Button);
+						</script>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Shadow DOM</h2>
+					<q>Shadow DOM enables you to attach a DOM tree to an element, and have the internals of this tree hidden from JavaScript and CSS running in the page.</q>
+					<p>(Source: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM</a>)</p>
+
+					<mauwi-button-v3></mauwi-button-v3>
+				</section>
+
+				<section>
+					<h2>Shadow DOM</h2>
+					<ul>
+						<li>DOM scoping. DOM APIs like document.querySelector won't find elements in the component's shadow DOM, so it's harder for global scripts to accidentally break your component.</li>
+						<li>Style scoping. You can write encapsulated styles for your shadow DOM that don't affect the rest of the DOM tree.</li>
+						<li>Composition. The component's shadow root, which contains its internal DOM, is separate from the component's children. You can choose how children are rendered in your component's internal DOM.</li>
+					</ul>
+					<p>(Source: <a href="https://lit.dev/docs/components/shadow-dom/">https://lit.dev/docs/components/shadow-dom/</a>)</p>
+				</section>
+
+				<section>
+					<pre><code class="language-html" data-trim>
+								<script>
+									class Mauwi4Button extends HTMLElement {
+										constructor() {
+											super();
+											const root = this.attachShadow({ mode: 'closed' });
+											root.innerHTML = `
+												<style>
+													.info { font-style: italic; }
+												</style>
+												<button>
+													<span class="info">Info: </span>
+													<slot>Default Value</slot>
+												</button>
+											`;
+										}
+									}
+									customElements.define('mauwi-button-v4', Mauwi4Button);
+								</script>
+								<mauwi-button-v4></mauwi-button-v4>
+					</code></pre>
+
+					<pre><code class="language-html" data-trim>
+								<style>
+									.info { font-weight: bold; }
+								</style>
+								<span class="info">Bold or Italic or both?</span>
+					</code></pre>
+
+					<div class="r-stack">
+						<div class="fragment fade-in-then-out">
+							<style>
+								.info { font-weight: bold; }
+							</style>
+							<span class="info">Bold or Italic or both?</span><br>
+							<mauwi-button-v4></mauwi-button-v4>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>Shadow DOM option 'mode'</h2>
+					<q>The mode read-only property of the ShadowRoot specifies its mode — either open or closed. This defines whether or not the shadow root's internal features are accessible from JavaScript.</q>
+					<p>(Source: <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode">https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode</a>)</p>
+					<pre><code class="language-javascript" data-trim>
+						// mode 'closed'
+						document.querySelector("mauwi-button-v4").shadowRoot
+						// returns null
+
+						// mode 'open'
+						document.querySelector("mauwi-button-v4").shadowRoot
+						// returns shadow-root object
+					</code></pre>
+
+					<mauwi-button-v4></mauwi-button-v4>
+				</section>
+
+				<section>
+					<h1>2 Building Web Components with Lit Elements</h1>
+					<div style="width: auto; display: flex; justify-content: center">
+						<div style="width: 300px">
+							<svg aria-label="Lit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 425 200" id="full"><view id="flame" viewBox="-132.5 0 160 200"></view><view id="name" viewBox="332.5 127.5 185 122"></view><symbol id="name-symbol" viewBox="240 78 185 122"><path fill="var(--lit-logo-text-color, black)" d="M394.5 78v28.8H425v15.6h-30.5V158c0 3.6.1 7.2.5 10.3.8 5.3 4 10.5 8.4 12.5 5.7 2.6 9.7 2.1 21.6 1.7l-2.9 17.2c-.8.4-4 .3-7 .3-7 0-33.4 2.5-38.8-24.7-.9-4.7-.7-9.5-.7-16.9v-35.8H362l.2-15.9h13.4V78zm-51.7 28.7v91.5H324v-91.5zm0-28.7v16.3h-19V78zm-83.6 102.2h48.2l-18 18H240V78h19.2z"></path></symbol><symbol id="flame-symbol" viewBox="0 0 160 200"><path fill="var(--lit-logo-dark-cyan, #00e8ff)" d="M40 120l20-60l90 90l-30 50l-40-40h-20"></path><path fill="var(--lit-logo-dark-blue, #283198)" d="M80 160 L80 80 L120 40 L 120 120 M0 160 L40 200 L40 120 L20 120"></path><path fill="var(--lit-logo-blue, #324fff)" d="M40 120v-80l40-40v80M120 200v-80l40-40v80M0 160v-80l40 40"></path><path fill="var(--lit-logo-cyan, #0ff)" d="M40 200v-80l40 40"></path></symbol><use href="#name-symbol" x="332.5" y="127.5" transform="scale(0.61)"></use><use href="#flame-symbol" x="-132.5"></use></svg>
+						</div>
+					</div>
+					<a href="https://lit.dev/" target="_blank">https://lit.dev</a>
+				</section>
+
+				<section>
+					<h2>A Web Component with Lit Elements</h2>
+					<pre><code class="language-javascript" data-trim>
+						import {html, css, LitElement} from 'lit';
+						import {customElement, property} from 'lit/decorators.js';
+
+						export class Mauwi5Button extends LitElement {
+							static styles = css`.info { font-style: italic; }`;
+
+							static properties = {
+								label: {type: String},
+							};
+
+							constructor() {
+								super();
+								this.label = 'Default Value';
+							}
+
+							render() {
+								return html`
+									<button>
+										<span class="info">Info: </span>
+										${this.label}
+									</button>
+								`;
+							}
+						}
+						customElements.define('mauwi-button-v5', Mauwi5Button);
+					</code></pre>
+					<pre><code class="language-html" data-trim>
+						<mauwi-button-v5 label="Mauwi Lit Button"></mauwi-button-v5>
+					</code></pre>
+
+					<script type="module" src="./mauwi-button.js"></script>
+					<mauwi-button-v5 label="Mauwi Lit Button"></mauwi-button-v5>
+				</section>
+
+				<section>
+					<h2>Lit Features</h2>
+					<ul>
+						<li>Extends from LitElement class</li>
+						<li>css imported from Lit (Scoped styles)</li>
+						<li>tagged template literals (Declarative templates)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Adding TypeScript</h2>
+					<pre><code class="language-typescript" data-trim>
+						import {html, css, LitElement} from 'lit';
+						import {customElement, property} from 'lit/decorators.js';
+
+						@customElement('mauwi-button-v6')
+						export class Mauwi6Button extends LitElement {
+							static styles = css`.info { font-style: italic; }`;
+
+							@property({ type: String })
+							label = 'Default Value';
+
+							render() {
+								return html`
+									<button>
+										<span class="info">Info: </span>
+										${this.label}
+									</button>
+								`;
+							}
+						}
+					</code></pre>
+					<pre><code class="language-html" data-trim>
+						<mauwi-button-v6 name="Mauwi Lit Button"></mauwi-button-v6>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>TypeScript added Features</h2>
+					<ul>
+						<li>@customElement() decorator (Custom Elements)</li>
+						<li>@property() decorator (Reactive properties)</li>
+					</ul>
+					<!--<p><a href="https://lit.dev/playground/#sample=examples%2Fhello-world&project=W3sibmFtZSI6Im1hdXdpLWJ1dHRvbi50cyIsImNvbnRlbnQiOiJpbXBvcnQge2h0bWwsIGNzcywgTGl0RWxlbWVudH0gZnJvbSAnbGl0JztcbmltcG9ydCB7Y3VzdG9tRWxlbWVudCwgcHJvcGVydHl9IGZyb20gJ2xpdC9kZWNvcmF0b3JzLmpzJztcblxuQGN1c3RvbUVsZW1lbnQoJ21hdXdpLWJ1dHRvbicpXG5leHBvcnQgY2xhc3MgTWF1d2lCdXR0b24gZXh0ZW5kcyBMaXRFbGVtZW50IHtcbiAgc3RhdGljIHN0eWxlcyA9IGNzc2AuaW5mbyB7IGZvbnQtc3R5bGU6IGl0YWxpYzsgfWA7XG5cbiAgQHByb3BlcnR5KClcbiAgbGFiZWw6IHN0cmluZyA9ICdEZWZhdWx0IFZhbHVlJztcblxuICByZW5kZXIoKSB7XG4gICAgcmV0dXJuIGh0bWxgPGJ1dHRvbj5cbiAgICAgICAgPHNwYW4gY2xhc3M9XCJpbmZvXCI-SW5mbzogPC9zcGFuPiAgXG4gICAgICAgICR7dGhpcy5sYWJlbH1cbiAgICAgIDwvYnV0dG9uPmA7XG4gIH1cbn1cbiJ9LHsibmFtZSI6ImluZGV4Lmh0bWwiLCJjb250ZW50IjoiPCFET0NUWVBFIGh0bWw-XG48aGVhZD5cbiAgPHNjcmlwdCB0eXBlPVwibW9kdWxlXCIgc3JjPVwiLi9tYXV3aS1idXR0b24uanNcIj48L3NjcmlwdD5cbjwvaGVhZD5cbjxib2R5PlxuICA8bWF1d2ktYnV0dG9uIGxhYmVsPVwiTWF1d2kgTGl0IEJ1dHRvblwiPjwvc2ltcGxlLWdyZWV0aW5nPlxuPC9ib2R5PlxuIn0seyJuYW1lIjoicGFja2FnZS5qc29uIiwiY29udGVudCI6IntcbiAgXCJkZXBlbmRlbmNpZXNcIjoge1xuICAgIFwibGl0XCI6IFwiXjMuMC4wXCIsXG4gICAgXCJAbGl0L3JlYWN0aXZlLWVsZW1lbnRcIjogXCJeMi4wLjBcIixcbiAgICBcImxpdC1lbGVtZW50XCI6IFwiXjQuMC4wXCIsXG4gICAgXCJsaXQtaHRtbFwiOiBcIl4zLjAuMFwiXG4gIH1cbn0iLCJoaWRkZW4iOnRydWV9XQ)" target="_blank">Lit Playground</a></p>-->
+				</section>
+
+				<section>
+					<h2>Events</h2>
+					<p><a href="https://stackblitz.com/edit/vitejs-vite-f8esni?file=src%2Fmauwi-button.ts" target="_blank">Lit Playground</a></p>
+				</section>
+
+				<section>
+					<h1>3 TailwindCSS</h1>
+					<q>A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup.</q>
+					<p>(Source: <a href="https://tailwindcss.com/">https://tailwindcss.com</a>)</p>
+				</section>
+
+				<section>
+					<h2>mauwi-wc Repository</h2>
+					<ul>
+						<li><a href="https://github.com/mauricewipf/mauwi-wc/blob/main/src/tabs/tabs.ts" target="_blank">mauwi-tabs</a></li>
+						<li><a href="https://github.com/mauricewipf/mauwi-wc/blob/main/src/shared/tailwind.element.ts" target="_blank">tailwind.element.ts</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>4 Storybook</h1>
+					<p><a href="https://www.mauwi.me/mauwi-wc/?path=/story/components-tabs--small-screen" target="_blank">Storybook</a></p>
+				</section>
+
+				<section>
+					<h1>5 Sharing and distributing Web Components</h1>
+				</section>
+
+				<section>
+					<h2>CDN</h2>
+					<p>Content Delivery Network</p>
+					<pre><code class="language-html" data-trim>
+						<script type="module" src="https://unpkg.com/@mauwi-org/mauwi-wc/dist/entry-index.js"></script>
+
+						<mauwi-calendar></mauwi-calendar>
+					</code></pre>
+					<script type="module" src="https://unpkg.com/@mauwi-org/mauwi-wc/dist/entry-index.js"></script>
+					<mauwi-calendar></mauwi-calendar>
+				</section>
+
+
+				<section>
+					<h2>Publish on NPM or Yarn</h2>
+					<pre><code class="language-console" data-trim>
+						$ npm install @mauwi-org/mauwi-wc
+					</code></pre>
+					<pre><code class="language-html" data-trim>
+						<mauwi-calendar></mauwi-calendar>
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Resources</h1>
+					<ul>
+						<li><a href="https://lit.dev">https://lit.dev</a></li>
+						<li><a href="https://tailwindcss.com">https://tailwindcss.com</a></li>
+						<li><a href="https://storybook.js.org">https://storybook.js.org</a></li>
+						<li><a href="https://github.com/mauricewipf/mauwi-wc">mauwi-wc Repository on GitHub</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>6 Q & A</h1>
+				</section>
 			</div>
 		</div>
 
@@ -30,7 +439,12 @@
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
+				center: false,
 				hash: true,
+
+				width: 1280,
+
+				slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

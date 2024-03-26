@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Webinar</title>
+</head>
+
+<style>
+    mauwi-button {
+        /*background-color: lightcoral;*/
+    }
+    .label {
+        color: green;
+    }
+</style>
+
+<body>
+
+<h2>Part One</h2>
+
+<script>
+  class MauwiButton extends HTMLElement {
+    constructor() {
+      super();
+      const root = this.attachShadow({ mode: 'open' });
+      root.innerHTML = `
+        <style>
+          .info {
+              font-style: italic;
+          }
+        </style>
+        <button>
+          <span class="info">Info: </span>
+          <slot></slot>
+        </button>
+      `;
+    }
+  }
+  customElements.define('mauwi-button', MauwiButton);
+</script>
+
+<button>HTML Button</button>
+<br>
+<mauwi-button>Mauwi Button</mauwi-button>
+<br>
+<style>
+  .info { font-weight: bold; }
+</style>
+<span class="info">Bold or Italic or both?</span>
+
+<h2>Part Two</h2>
+
+<script type="module" src="mauwi-button.js"></script>
+<mauwi-lit-button label="Mauwi Lit Button"></mauwi-lit-button>
+
+</body>
+</html>
+
+<h2>Part Three</h2>
+
+<script type="module" src="https://unpkg.com/@mauwi-org/mauwi-wc/dist/entry-index.js"></script>
+<mauwi-calendar></mauwi-calendar>
+
