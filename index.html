@@ -21,7 +21,7 @@
 					<p>Webinar</p>
 					<h1>Elevating <br>Web Development</h1>
 					<h2>Crafting Dynamic UIs with <br>Lit Elements and TypeScript</h2>
-					<p>by Maurice Wipf</p>
+					<p>by <strong>Maurice Wipf</strong></p>
 					<p>Date: 2024-04-17</p>
 				</section>
 
@@ -39,12 +39,14 @@
 
 				<section>
 					<h1>About me</h1>
-					<p>Maurice Wipf</p>
+					<p><strong>Maurice Wipf</strong></p>
 					<ul>
 						<li>Freelance Software Developer and IT Consultant</li>
 						<li>10+ years of experience with web development</li>
 						<li>Based in Budapest, originally from Germany</li>
-						<li>LinkedIn: <a href="https://www.linkedin.com/in/mauricewipf/">Maurice Wipf</a></li>
+						<li>LinkedIn: <a href="https://www.linkedin.com/in/mauricewipf/" target="_blank">Maurice Wipf</a></li>
+						<li>X: <a href="https://twitter.com/mauwi/" target="_blank">@mauwi</a></li>
+						<li>E-mail: <a href="mailto:maurice.wipf@mauwi.me">maurice.wipf@mauwi.me</a></li>
 					</ul>
 				</section>
 
@@ -175,8 +177,8 @@
 				</section>
 
 				<section>
-					<p>What if no text is provided in the custom tag?</p>
-					<pre><code class="language-html" data-trim>
+					<p>Set a default value</p>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-button-v3></mauwi-button-v3>
 						<script>
 							class Mauwi3Button extends HTMLElement {
@@ -193,6 +195,8 @@
 							customElements.define('mauwi-button-v3', Mauwi3Button);
 						</script>
 					</code></pre>
+
+					<mauwi-button-v3></mauwi-button-v3>
 				</section>
 
 				<section>
@@ -201,6 +205,7 @@
 					<p>(Source: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM">https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM</a>)</p>
 
 					<mauwi-button-v3></mauwi-button-v3>
+					<p style="font-size: small">(Inspect dev tools)</p>
 				</section>
 
 				<section>
@@ -240,7 +245,7 @@
 								<style>
 									.info { font-weight: bold; }
 								</style>
-								<span class="info">Bold or Italic or both?</span>
+								<span class="info">Bold, italic or both?</span>
 					</code></pre>
 
 					<div class="r-stack">
@@ -248,7 +253,7 @@
 							<style>
 								.info { font-weight: bold; }
 							</style>
-							<span class="info">Bold or Italic or both?</span><br>
+							<span class="info">Bold, italic or both?</span><br>
 							<mauwi-button-v4></mauwi-button-v4>
 						</div>
 					</div>
@@ -285,7 +290,7 @@
 					<h2>A Web Component with Lit Elements</h2>
 					<pre><code class="language-javascript" data-trim data-line-numbers>
 						import {html, css, LitElement} from 'lit';
-						import {customElement, property} from 'lit/decorators.js';
+						import {customElement} from 'lit/decorators.js';
 
 						export class Mauwi5Button extends LitElement {
 							static styles = css`.info { font-style: italic; }`;
@@ -351,7 +356,7 @@
 						}
 					</code></pre>
 					<pre><code class="language-html" data-trim data-line-numbers>
-						<mauwi-button-v6 name="Mauwi Lit Button"></mauwi-button-v6>
+						<mauwi-button-v6 label="Mauwi Lit Button"></mauwi-button-v6>
 					</code></pre>
 				</section>
 
@@ -429,6 +434,13 @@
 
 				<section>
 					<h1>6 Q & A</h1>
+					<p>Get in touch:</p>
+					<ul>
+						<li>LinkedIn: <a href="https://www.linkedin.com/in/mauricewipf/" target="_blank">Maurice Wipf</a></li>
+						<li>X: <a href="https://twitter.com/mauwi/" target="_blank">@mauwi</a></li>
+						<li>E-mail: <a href="mailto:maurice.wipf@mauwi.me">maurice.wipf@mauwi.me</a></li>
+					</ul>
+
 				</section>
 			</div>
 		</div>
@@ -447,7 +459,7 @@
 
 				width: 1280,
 
-				slideNumber: true,
+				slideNumber: 'c/t',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
