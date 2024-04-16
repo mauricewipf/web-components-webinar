@@ -59,7 +59,7 @@
 				</section>
 
 				<section>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<button>HTML Button</button>
 
 						<mauwi-button>Mauwi Button</mauwi-button>
@@ -81,7 +81,7 @@
 					<h2>Custom Elements</h2>
 					<div class="r-stack">
 						<div class="fragment fade-in-then-out">
-							<pre><code class="language-html" data-trim>
+							<pre><code class="language-html" data-trim data-line-numbers>
 								<mauwi-button></mauwi-button>
 								<script>
 									class MauwiButton extends HTMLElement {
@@ -101,7 +101,7 @@
 						</div>
 
 						<div class="fragment fade-in-then-out">
-							<pre><code class="language-html" data-trim>
+							<pre><code class="language-html" data-trim data-line-numbers>
 								<mauwi-button>Custom Button</mauwi-button>
 								<script>
 									class MauwiButton extends HTMLElement {
@@ -121,7 +121,7 @@
 						</div>
 
 						<div class="fragment fade-in-then-out">
-							<pre><code class="language-html" data-trim>
+							<pre><code class="language-html" data-trim data-line-numbers>
 								<mauwi-button>Custom Button</mauwi-button>
 								<script>
 									class MauwiButton extends HTMLElement {
@@ -144,7 +144,7 @@
 
 				<section>
 					<h2>HTML Templates & Slots</h2>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-button-v2>Mauwi Button</mauwi-button-v2>
 						<script>
 							class Mauwi2Button extends HTMLElement {
@@ -167,7 +167,7 @@
 
 				<section>
 					<p>What if no text is provided in the custom tag?</p>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-button></mauwi-button>
 					</code></pre>
 
@@ -214,7 +214,7 @@
 				</section>
 
 				<section>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 								<script>
 									class Mauwi4Button extends HTMLElement {
 										constructor() {
@@ -236,7 +236,7 @@
 								<mauwi-button-v4></mauwi-button-v4>
 					</code></pre>
 
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 								<style>
 									.info { font-weight: bold; }
 								</style>
@@ -258,7 +258,7 @@
 					<h2>Shadow DOM option 'mode'</h2>
 					<q>The mode read-only property of the ShadowRoot specifies its mode — either open or closed. This defines whether or not the shadow root's internal features are accessible from JavaScript.</q>
 					<p>(Source: <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode">https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode</a>)</p>
-					<pre><code class="language-javascript" data-trim>
+					<pre><code class="language-javascript" data-trim data-line-numbers>
 						// mode 'closed'
 						document.querySelector("mauwi-button-v4").shadowRoot
 						// returns null
@@ -283,7 +283,7 @@
 
 				<section>
 					<h2>A Web Component with Lit Elements</h2>
-					<pre><code class="language-javascript" data-trim>
+					<pre><code class="language-javascript" data-trim data-line-numbers>
 						import {html, css, LitElement} from 'lit';
 						import {customElement, property} from 'lit/decorators.js';
 
@@ -310,7 +310,7 @@
 						}
 						customElements.define('mauwi-button-v5', Mauwi5Button);
 					</code></pre>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-button-v5 label="Mauwi Lit Button"></mauwi-button-v5>
 					</code></pre>
 
@@ -329,7 +329,7 @@
 
 				<section>
 					<h2>Adding TypeScript</h2>
-					<pre><code class="language-typescript" data-trim>
+					<pre><code class="language-typescript" data-trim data-line-numbers>
 						import {html, css, LitElement} from 'lit';
 						import {customElement, property} from 'lit/decorators.js';
 
@@ -350,7 +350,7 @@
 							}
 						}
 					</code></pre>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-button-v6 name="Mauwi Lit Button"></mauwi-button-v6>
 					</code></pre>
 				</section>
@@ -395,7 +395,7 @@
 				<section>
 					<h2>CDN</h2>
 					<p>Content Delivery Network</p>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<script type="module" src="https://unpkg.com/@mauwi-org/mauwi-wc/dist/entry-index.js"></script>
 
 						<mauwi-calendar></mauwi-calendar>
@@ -407,10 +407,10 @@
 
 				<section>
 					<h2>Publish on NPM or Yarn</h2>
-					<pre><code class="language-console" data-trim>
+					<pre><code class="language-console" data-trim data-line-numbers>
 						$ npm install @mauwi-org/mauwi-wc
 					</code></pre>
-					<pre><code class="language-html" data-trim>
+					<pre><code class="language-html" data-trim data-line-numbers>
 						<mauwi-calendar></mauwi-calendar>
 					</code></pre>
 				</section>
